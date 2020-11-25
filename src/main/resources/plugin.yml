@@ -1,0 +1,5 @@
+name: SellBlocks
+version: ${project.version}
+main: com.ruthlessjailer.plugin.sellblocks.Sellblocks
+api-version: 1.12
+depend: [ WorldGuard, WorldEdit, Vault, Essentials ]

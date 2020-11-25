@@ -1,0 +1,7 @@
+{
+  "pickup_distance": 25,
+  "region_id_format": "sellblock_${PLAYER}_/${LOCATION}/_${TYPE}",
+  "default_sellblock_limit": 10,
+  "save_interval_minutes": 5,
+  "debug": false
+}

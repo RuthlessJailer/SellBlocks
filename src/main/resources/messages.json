@@ -1,0 +1,23 @@
+{
+  "run_help": "&eRun &b/sellblocks help &cfor a list of commands",
+  "players_limit": "&b${PLAYER}'s &asellblock limit is &b${LIMIT}&a.",
+  "set_limit": "&aSet &b${PLAYER}'s &asellblock limit to &b${LIMIT}&a.",
+  "reached_limit": "&cYou have reached the limit of &b${LIMIT} &csellblocks.",
+  "instruction_break_block_add": "&eBreak the block that you wish to make a sellblock",
+  "instruction_break_block_remove": "&eBreak the block that you wish to remove as a sellblock",
+  "saving": "saving",
+  "loading": "loading",
+  "reloading": "reloading",
+  "no_sellblocks": "&cDoh! There are no sellblocks! &aRun &b/sellblock add &ato make the first one!",
+  "list_item": "&b${PLAYER} &3@ &b${LOCATION}&3: &b${TYPE}",
+  "players_only": "&cPlayers only, retard",
+  "not_your_sellblock": "&cThat's not one of your sellblocks idiot",
+  "not_a_sellblock": "&cThat's not a sellblock, dingus",
+  "removed_sellblock": "&6Removed sellblock at location &8${LOCATION}",
+  "already_a_sellblock": "&cThat's already a sellblock, retard",
+  "location_set": "&aLocation set to &8${LOCATION}",
+  "instruction_drop_item": "&eDrop the item that you wish to collect",
+  "too_close": "&cToo close to another sellblock of the same type; please be at least ${DISTANCE} blocks away",
+  "item_set": "&aItem set to ${TYPE}",
+  "registered_success": "&6Successfully registered a sellblock to &b%s &6at &8${LOCATION} &6with item &b%s"
+}
