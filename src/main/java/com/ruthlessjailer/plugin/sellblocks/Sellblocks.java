@@ -26,20 +26,31 @@ public final class Sellblocks extends PluginBase {
 	@Override
 	protected void onStart() {
 
+		economy    = this.getServer().getServicesManager().getRegistration(Economy.class).getProvider();
+		essentials = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials");
+
+		if (economy == null) {
+			Chat.severe("Vault not found! Please download it from https://www.spigotmc.org/resources/vault.34315/");
+			setEnabled(false);
+			return;
+		}
+		if (essentials == null) {
+			Chat.severe("Essentials not found! Please download it from https://www.spigotmc.org/resources/essentialsx.9089/");
+			setEnabled(false);
+			return;
+		}
+
 		Common.runLaterAsync(() -> {
 			Chat.debug("Config", "Initializing config files.");
 			Config.init();
 			Messages.init();
 		});
 
-		economy    = this.getServer().getServicesManager().getRegistration(Economy.class).getProvider();
-		essentials = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials");
-
-		SellblockRegistry.load();
+		Common.runLaterAsync(SellblockRegistry::load);
 
 		Common.runLaterTimerAsync(20 * 60 * Config.SAVE_INTERVAL_MINUTES, 20 * 60 * Config.SAVE_INTERVAL_MINUTES, SellblockRegistry::save);
 
-		this.registerEvents(new SellblockListener());
-		this.registerCommands(new SellblockCommand());
+		registerEvents(new SellblockListener());
+		registerCommands(new SellblockCommand());
 	}
 }

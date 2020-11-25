@@ -24,18 +24,14 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 	@Override
 	protected void runCommand(@NonNull final CommandSender sender, final String[] args, @NonNull final String label) {
-		final Player      player = this.getPlayer(sender);
-		final PlayerCache cache  = PlayerCache.getCache(player);
-
 		if (args.length == 0) {//no args
 			Chat.send(sender, Messages.RUN_HELP);
 		}
-
 	}
 
 	@SubCommand(inputArgs = "limit %p<Player> get")
 	private synchronized void getLimit(final OfflinePlayer player) {
-		if (hasPermission(this.sender, getCustomPermissionSyntax() + ".limit")) {
+		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".limit")) {
 			return;//no error message
 		}
 
@@ -70,6 +66,9 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 	@SubCommand(inputArgs = "add")
 	private synchronized void add() {
+		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".add")) {
+			return;//no error message
+		}
 		final Player      player = getPlayer(this.sender);
 		final PlayerCache cache  = PlayerCache.getCache(player);
 
@@ -77,7 +76,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 						   ? Config.DEFAULT_SELLBLOCK_LIMIT
 						   : cache.getSellblockLimit());
 
-		if (!hasPermission(player, getCustomPermissionSyntax() + ".bypass") && SellblockRegistry.count(player) > limit) {
+		if (!hasPermission(player, getCustomPermissionSyntax() + ".add.bypass") && SellblockRegistry.count(player) > limit) {
 			Chat.send(player, Messages.fillPlaceholders(Messages.REACHED_LIMIT, player, null));
 			return;
 		}
@@ -90,6 +89,9 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 	@SubCommand(inputArgs = "remove")
 	private synchronized void remove() {
+		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".remove")) {
+			return;//no error message
+		}
 		final Player      player = getPlayer(this.sender);
 		final PlayerCache cache  = PlayerCache.getCache(player);
 

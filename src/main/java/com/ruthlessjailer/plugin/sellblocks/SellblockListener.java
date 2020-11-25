@@ -153,6 +153,13 @@ public class SellblockListener implements Listener {
 				}
 			}
 
+			final BigDecimal price = Sellblocks.getEssentials().getWorth().getPrice(Sellblocks.getEssentials(), event.getItemDrop().getItemStack());
+
+			if (price == null) {//item is not sellable
+				Chat.send(event.getPlayer(), Messages.CANNOT_SELL);
+				return;
+			}
+
 			final Sellblock sellblock = new Sellblock(SerializableLocation.fromLocation(location),
 													  event.getPlayer().getUniqueId(),
 													  event.getItemDrop().getItemStack().getType(),

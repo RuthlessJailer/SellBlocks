@@ -35,6 +35,7 @@ public final class Messages extends JSONFile {
 	public static final String LOCATION_SET;
 	public static final String INSTRUCTION_DROP_ITEM;
 	public static final String TOO_CLOSE;
+	public static final String CANNOT_SELL;
 	public static final String ITEM_SET;
 	public static final String REGISTERED_SUCCESS;
 
@@ -64,6 +65,7 @@ public final class Messages extends JSONFile {
 			LOCATION_SET          = "&aLocation set to &8${LOCATION}";
 			INSTRUCTION_DROP_ITEM = "&eDrop the item that you wish to collect";
 			TOO_CLOSE             = "&cToo close to another sellblock of the same type; please be at least ${DISTANCE} blocks away";
+			CANNOT_SELL           = "&cYou cannot sell that type of item.";
 			ITEM_SET              = "&aItem set to ${TYPE}";
 			REGISTERED_SUCCESS    = "&6Successfully registered a sellblock to &b%s &6at &8${LOCATION} &6with item &b%s";
 
@@ -90,6 +92,7 @@ public final class Messages extends JSONFile {
 			LOCATION_SET          = object.get("location_set").getAsString();
 			INSTRUCTION_DROP_ITEM = object.get("instruction_drop_item").getAsString();
 			TOO_CLOSE             = object.get("too_close").getAsString();
+			CANNOT_SELL           = object.get("cannot_sell").getAsString();
 			ITEM_SET              = object.get("item_set").getAsString();
 			REGISTERED_SUCCESS    = object.get("registered_success").getAsString();
 

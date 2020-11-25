@@ -18,6 +18,7 @@
   "location_set": "&aLocation set to &8${LOCATION}",
   "instruction_drop_item": "&eDrop the item that you wish to collect",
   "too_close": "&cToo close to another sellblock of the same type; please be at least ${DISTANCE} blocks away",
+  "cannot_sell": "&cYou cannot sell that type of item.",
   "item_set": "&aItem set to ${TYPE}",
-  "registered_success": "&6Successfully registered a sellblock to &b%s &6at &8${LOCATION} &6with item &b%s"
+  "registered_success": "&6Successfully registered a sellblock to &b${PLAYER} &6at &8${LOCATION} &6with item &b${TYPE}"
 }
