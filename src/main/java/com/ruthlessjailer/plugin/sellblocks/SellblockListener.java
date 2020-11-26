@@ -196,12 +196,12 @@ public class SellblockListener implements Listener {
 	}
 
 	private boolean isClose(@NonNull final Location location, @NonNull final Location other) {//for spacing them out
-		return Math.abs(location.getX() - other.getX()) <= Config.PICKUP_DISTANCE * 2 && Math.abs(location.getZ() - other.getZ()) <= Config.PICKUP_DISTANCE * 2;
+		return Math.abs(location.getX() - other.getX()) <= Config.getInstance().PICKUP_DISTANCE * 2 && Math.abs(location.getZ() - other.getZ()) <= Config.getInstance().PICKUP_DISTANCE * 2;
 		//x2 so they don't overlap
 	}
 
 	private boolean isTooClose(@NonNull final Location location, @NonNull final Location other) {//for collecting
-		return Math.abs(location.getX() - other.getX()) <= Config.PICKUP_DISTANCE && Math.abs(location.getZ() - other.getZ()) <= Config.PICKUP_DISTANCE;
+		return Math.abs(location.getX() - other.getX()) <= Config.getInstance().PICKUP_DISTANCE && Math.abs(location.getZ() - other.getZ()) <= Config.getInstance().PICKUP_DISTANCE;
 	}
 
 }

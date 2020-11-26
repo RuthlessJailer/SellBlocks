@@ -73,7 +73,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 		final PlayerCache cache  = PlayerCache.getCache(player);
 
 		final int limit = (cache.getSellblockLimit() == -1
-						   ? Config.DEFAULT_SELLBLOCK_LIMIT
+						   ? Config.getInstance().DEFAULT_SELLBLOCK_LIMIT
 						   : cache.getSellblockLimit());
 
 		if (!hasPermission(player, getCustomPermissionSyntax() + ".add.bypass") && SellblockRegistry.count(player) > limit) {

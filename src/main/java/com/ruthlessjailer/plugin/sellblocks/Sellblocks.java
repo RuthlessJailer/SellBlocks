@@ -42,13 +42,13 @@ public final class Sellblocks extends PluginBase {
 
 		Common.runLaterAsync(() -> {
 			Chat.debug("Config", "Initializing config files.");
-			Config.init();
-			Messages.init();
+			Config.load();
+			Messages.load();
 		});
 
 		Common.runLaterAsync(SellblockRegistry::load);
 
-		Common.runLaterTimerAsync(20 * 60 * Config.SAVE_INTERVAL_MINUTES, 20 * 60 * Config.SAVE_INTERVAL_MINUTES, SellblockRegistry::save);
+		Common.runLaterTimerAsync(20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES, 20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES, SellblockRegistry::save);
 
 		registerEvents(new SellblockListener());
 		registerCommands(new SellblockCommand());
