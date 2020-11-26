@@ -14,6 +14,7 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.managers.RemovalStrategy;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import lombok.NonNull;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -33,6 +34,9 @@ import java.math.BigDecimal;
  * @author RuthlessJailer
  */
 public class SellblockListener implements Listener {
+
+	@Setter
+	private static Messages messages = Messages.getInstance();
 
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent event) {
@@ -62,19 +66,19 @@ public class SellblockListener implements Listener {
 				final Location location = event.getBlock().getLocation();
 
 				if (!SellblockRegistry.owns(event.getPlayer(), location) && !Common.hasPermission(event.getPlayer(), "")) {
-					Chat.send(event.getPlayer(), Messages.NOT_YOUR_SELLBLOCK);
+					Chat.send(event.getPlayer(), messages.NOT_YOUR_SELLBLOCK);
 					return;
 				}
 
 				if (!SellblockRegistry.exists(location)) {
-					Chat.send(event.getPlayer(), Messages.NOT_A_SELLBLOCK);
+					Chat.send(event.getPlayer(), messages.NOT_A_SELLBLOCK);
 					return;
 				}
 
 				disableProtection(SellblockRegistry.get(location));
 
 				SellblockRegistry.remove(location);
-				Chat.send(event.getPlayer(), Messages.fillPlaceholders(Messages.REMOVED_SELLBLOCK,
+				Chat.send(event.getPlayer(), Messages.fillPlaceholders(messages.REMOVED_SELLBLOCK,
 																	   event.getPlayer(),
 																	   new Sellblock(SerializableLocation.fromLocation(location),
 																					 event.getPlayer().getUniqueId(),
@@ -85,18 +89,18 @@ public class SellblockListener implements Listener {
 				final Location location = event.getBlock().getLocation();
 
 				if (SellblockRegistry.exists(location)) {
-					Chat.send(event.getPlayer(), Messages.ALREADY_A_SELLBLOCK);
+					Chat.send(event.getPlayer(), messages.ALREADY_A_SELLBLOCK);
 					return;
 				}
 
 				cache.setTempSellblockLocation(location);
 
-				Chat.send(event.getPlayer(), Messages.fillPlaceholders(Messages.LOCATION_SET, event.getPlayer(),
+				Chat.send(event.getPlayer(), Messages.fillPlaceholders(messages.LOCATION_SET, event.getPlayer(),
 																	   new Sellblock(SerializableLocation.fromLocation(location),
 																					 event.getPlayer().getUniqueId(),
 																					 Material.ACACIA_DOOR,
 																					 Material.ACACIA_DOOR.getNewData((byte) 0))));//dummy sellblock
-				Chat.send(event.getPlayer(), Messages.INSTRUCTION_DROP_ITEM);
+				Chat.send(event.getPlayer(), messages.INSTRUCTION_DROP_ITEM);
 			}
 			return;
 		}
@@ -147,7 +151,7 @@ public class SellblockListener implements Listener {
 			for (final Sellblock sellblock : SellblockRegistry.getAll()) {
 				if (this.isClose(sellblock.getLocation().toLocation(), event.getItemDrop().getLocation())) {
 					if (sellblock.getType() == event.getItemDrop().getItemStack().getType()) {
-						Chat.send(event.getPlayer(), Messages.fillPlaceholders(Messages.TOO_CLOSE, null, null));
+						Chat.send(event.getPlayer(), Messages.fillPlaceholders(messages.TOO_CLOSE, null, null));
 						return;
 					}
 				}
@@ -156,7 +160,7 @@ public class SellblockListener implements Listener {
 			final BigDecimal price = Sellblocks.getEssentials().getWorth().getPrice(Sellblocks.getEssentials(), event.getItemDrop().getItemStack());
 
 			if (price == null) {//item is not sellable
-				Chat.send(event.getPlayer(), Messages.CANNOT_SELL);
+				Chat.send(event.getPlayer(), messages.CANNOT_SELL);
 				return;
 			}
 
@@ -171,8 +175,8 @@ public class SellblockListener implements Listener {
 
 			cache.setTempSellblockLocation(null);
 
-			Chat.send(event.getPlayer(), Messages.fillPlaceholders(Messages.ITEM_SET, event.getPlayer(), sellblock));
-			Chat.send(event.getPlayer(), Messages.fillPlaceholders(Messages.REGISTERED_SUCCESS, event.getPlayer(), sellblock));
+			Chat.send(event.getPlayer(), Messages.fillPlaceholders(messages.ITEM_SET, event.getPlayer(), sellblock));
+			Chat.send(event.getPlayer(), Messages.fillPlaceholders(messages.REGISTERED_SUCCESS, event.getPlayer(), sellblock));
 		}
 	}
 

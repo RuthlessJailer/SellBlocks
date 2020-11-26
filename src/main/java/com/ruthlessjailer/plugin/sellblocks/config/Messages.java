@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.ruthlessjailer.api.theseus.io.JSONFile;
 import com.ruthlessjailer.plugin.sellblocks.PlayerCache;
 import com.ruthlessjailer.plugin.sellblocks.Sellblock;
+import com.ruthlessjailer.plugin.sellblocks.SellblockCommand;
+import com.ruthlessjailer.plugin.sellblocks.SellblockListener;
 import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.OfflinePlayer;
@@ -150,13 +152,12 @@ public final class Messages extends JSONFile {
 		return modified.replace("${DISTANCE}", String.valueOf(Config.getInstance().PICKUP_DISTANCE * 2));//x2 to eliminate overlap
 	}
 
-	public static void reload() {
-		instance = new Messages();
-		load();
-	}
-
 	public static void load() {
+		instance = new Messages();
 		fixConfig(instance);
 		loadConfig(instance);
+
+		SellblockCommand.setMessages(instance);
+		SellblockListener.setMessages(instance);
 	}
 }

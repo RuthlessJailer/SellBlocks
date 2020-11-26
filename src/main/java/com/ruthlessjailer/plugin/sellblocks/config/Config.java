@@ -67,9 +67,6 @@ public final class Config extends JSONFile {
 								  .replaceAll("[()]", "/"));
 	}
 
-	/**
-	 * Useless method to call so that class loads.
-	 */
 	public static void load() {
 		instance = new Config();
 		fixConfig(instance);

@@ -7,6 +7,7 @@ import com.ruthlessjailer.api.theseus.command.SuperiorCommand;
 import com.ruthlessjailer.plugin.sellblocks.config.Config;
 import com.ruthlessjailer.plugin.sellblocks.config.Messages;
 import lombok.NonNull;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -18,6 +19,10 @@ import org.bukkit.entity.Player;
  * @author RuthlessJailer
  */
 public class SellblockCommand extends CommandBase implements SuperiorCommand {
+
+	@Setter
+	private static Messages messages = Messages.getInstance();
+
 	public SellblockCommand() {
 		super("sellblock|sb");
 	}
@@ -25,7 +30,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 	@Override
 	protected void runCommand(@NonNull final CommandSender sender, final String[] args, @NonNull final String label) {
 		if (args.length == 0) {//no args
-			Chat.send(sender, Messages.RUN_HELP);
+			Chat.send(sender, messages.RUN_HELP);
 		}
 	}
 
@@ -37,7 +42,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 		final int limit = PlayerCache.getCache(player).getSellblockLimit();
 
-		this.sender.sendMessage(Messages.fillPlaceholders(Messages.PLAYERS_LIMIT, player, null));
+		this.sender.sendMessage(Messages.fillPlaceholders(messages.PLAYERS_LIMIT, player, null));
 	}
 
 	@SubCommand(inputArgs = "limit %p<Player> default")
@@ -48,7 +53,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 		PlayerCache.getCache(player).setSellblockLimit(-1);
 
-		this.sender.sendMessage(Messages.fillPlaceholders(Messages.SET_LIMIT, player, null));
+		this.sender.sendMessage(Messages.fillPlaceholders(messages.SET_LIMIT, player, null));
 	}
 
 	@SubCommand(inputArgs = "limit %p<Player> %i<Limit>")
@@ -59,7 +64,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 
 		PlayerCache.getCache(player).setSellblockLimit(limit);
 
-		this.sender.sendMessage(String.format(Messages.SET_LIMIT,
+		this.sender.sendMessage(String.format(messages.SET_LIMIT,
 											  player.getName(),
 											  limit));
 	}
@@ -77,11 +82,11 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 						   : cache.getSellblockLimit());
 
 		if (!hasPermission(player, getCustomPermissionSyntax() + ".add.bypass") && SellblockRegistry.count(player) > limit) {
-			Chat.send(player, Messages.fillPlaceholders(Messages.REACHED_LIMIT, player, null));
+			Chat.send(player, Messages.fillPlaceholders(messages.REACHED_LIMIT, player, null));
 			return;
 		}
 
-		Chat.send(player, Messages.INSTRUCTION_BREAK_BLOCK_ADD);
+		Chat.send(player, messages.INSTRUCTION_BREAK_BLOCK_ADD);
 
 		cache.setWaitingToPunchSellblock(true);
 		cache.setRemovingSellblock(false);
@@ -95,7 +100,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 		final Player      player = getPlayer(this.sender);
 		final PlayerCache cache  = PlayerCache.getCache(player);
 
-		Chat.send(player, Messages.INSTRUCTION_BREAK_BLOCK_REMOVE);
+		Chat.send(player, messages.INSTRUCTION_BREAK_BLOCK_REMOVE);
 
 		cache.setWaitingToPunchSellblock(true);
 		cache.setRemovingSellblock(true);
@@ -106,7 +111,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".save")) {
 			return;//no error message
 		}
-		Chat.send(this.sender, Messages.SAVING);
+		Chat.send(this.sender, messages.SAVING);
 		SellblockRegistry.save();
 	}
 
@@ -115,7 +120,7 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".load")) {
 			return;//no error message
 		}
-		Chat.send(this.sender, Messages.LOADING);
+		Chat.send(this.sender, messages.LOADING);
 		SellblockRegistry.load();
 	}
 
@@ -124,24 +129,24 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 		if (!hasPermission(this.sender, getCustomPermissionSyntax() + ".reload")) {
 			return;//no error message
 		}
-		Chat.send(this.sender, Messages.RELOADING);
+		Chat.send(this.sender, messages.RELOADING);
 	}
 
 	@SubCommand(inputArgs = "list")
 	private synchronized void list() {
 		if (SellblockRegistry.getAll().isEmpty()) {
-			Chat.send(this.sender, Messages.NO_SELLBLOCKS);
+			Chat.send(this.sender, messages.NO_SELLBLOCKS);
 			return;
 		}
 		for (final Sellblock sellblock : SellblockRegistry.getAll()) {
 			final Location location = sellblock.getLocation().toLocation();
-			Chat.send(this.sender, Messages.fillPlaceholders(Messages.LIST_ITEM, Bukkit.getOfflinePlayer(sellblock.getOwner()), sellblock));
+			Chat.send(this.sender, Messages.fillPlaceholders(messages.LIST_ITEM, Bukkit.getOfflinePlayer(sellblock.getOwner()), sellblock));
 		}
 	}
 
 	private Player getPlayer(@NonNull final CommandSender sender) {
 		if (!(sender instanceof Player)) {
-			Chat.send(sender, Messages.PLAYERS_ONLY);
+			Chat.send(sender, messages.PLAYERS_ONLY);
 			throw new CommandException();
 		}
 		return (Player) sender;
