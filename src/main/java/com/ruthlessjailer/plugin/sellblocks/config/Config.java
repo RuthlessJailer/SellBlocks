@@ -44,7 +44,6 @@ public final class Config extends JSONFile {
 
 	}
 
-
 	private Config() {
 		super("config.json");
 	}
@@ -62,14 +61,6 @@ public final class Config extends JSONFile {
 						 sellblock.getData().toString()
 								  .replaceAll(" ", "_")
 								  .replaceAll("[()]", "/"));
-	}
-
-	/**
-	 * Attempts to reload all constants.
-	 */
-	public static void reload() {
-		fixConfig(instance);
-		reloadConfig(instance);
 	}
 
 	/**

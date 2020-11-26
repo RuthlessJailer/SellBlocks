@@ -126,14 +126,6 @@ public final class Messages extends JSONFile {
 	}
 
 	/**
-	 * Attempts to reload all constants.
-	 */
-	public static void reload() {
-		fixConfig(instance);
-		reloadConfig(instance);
-	}
-
-	/**
 	 * Useless method to call so that class loads.
 	 */
 	public static void init() {

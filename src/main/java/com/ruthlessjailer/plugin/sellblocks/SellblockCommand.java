@@ -125,8 +125,6 @@ public class SellblockCommand extends CommandBase implements SuperiorCommand {
 			return;//no error message
 		}
 		Chat.send(this.sender, Messages.RELOADING);
-		Config.reload();
-		Messages.reload();
 	}
 
 	@SubCommand(inputArgs = "list")
