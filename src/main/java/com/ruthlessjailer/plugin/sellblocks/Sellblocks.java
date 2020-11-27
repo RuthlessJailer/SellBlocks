@@ -2,6 +2,7 @@ package com.ruthlessjailer.plugin.sellblocks;
 
 import com.ruthlessjailer.api.theseus.Chat;
 import com.ruthlessjailer.api.theseus.Common;
+import com.ruthlessjailer.api.theseus.MinecraftVersion;
 import com.ruthlessjailer.api.theseus.PluginBase;
 import com.ruthlessjailer.plugin.sellblocks.config.Config;
 import com.ruthlessjailer.plugin.sellblocks.config.Messages;
@@ -26,6 +27,10 @@ public final class Sellblocks extends PluginBase {
 	@Override
 	protected void onStart() {
 
+		if (MinecraftVersion.CURRENT_VERSION != MinecraftVersion.v1_12) {
+			Chat.warning("Unsupported server version detected. Proceed with caution.");
+		}
+
 		economy    = this.getServer().getServicesManager().getRegistration(Economy.class).getProvider();
 		essentials = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials");
 
@@ -44,11 +49,13 @@ public final class Sellblocks extends PluginBase {
 			Chat.debug("Config", "Initializing config files.");
 			Config.load();
 			Messages.load();
+			Common.runLaterTimerAsync(20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES,
+									  20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES,
+									  SellblockRegistry::save);
 		});
 
 		Common.runLaterAsync(SellblockRegistry::load);
 
-		Common.runLaterTimerAsync(20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES, 20 * 60 * Config.getInstance().SAVE_INTERVAL_MINUTES, SellblockRegistry::save);
 
 		registerEvents(new SellblockListener());
 		registerCommands(new SellblockCommand());

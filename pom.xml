@@ -6,7 +6,7 @@
 
     <groupId>com.ruthlessjailer.plugin.sellblocks</groupId>
     <artifactId>SellBlocks</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>SellBlocks</name>
@@ -53,9 +53,21 @@
                                     <include>org.apache.commons:*</include>
                                     <include>com.ruthlessjailer.api.theseus:*</include>
                                     <include>com.ruthlessjailer.api.theseus.*</include>
+                                    <include>com.nesaak.*</include>
+                                    <include>com.nesaak:*</include>
+                                    <include>com.nesaak.noreflection.*</include>
+                                    <include>com.nesaak.noreflection:*</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
+                                <relocation>
+                                    <pattern>com.nesaak.noreflection</pattern>
+                                    <shadedPattern>com.nesaak.noreflection</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.nesaak</pattern>
+                                    <shadedPattern>com.nesaak</shadedPattern>
+                                </relocation>
                                 <relocation>
                                     <pattern>org.apache.commons</pattern>
                                     <shadedPattern>org.apache.commons</shadedPattern>
@@ -157,6 +169,11 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.nesaak</groupId>
+            <artifactId>NoReflection</artifactId>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

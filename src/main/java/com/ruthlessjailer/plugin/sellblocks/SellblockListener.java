@@ -135,6 +135,13 @@ public class SellblockListener implements Listener {
 
 	}
 
+	private void enableProtectionMultiversion(@NonNull final Sellblock sellblock) {
+//		final Object region =
+//		final Class<?> blockVector = ReflectUtil.getClassSuppressed("com.sk89q.worldedit.BlockVector");
+//		final Constructor<?> protectedCuboidRegionConstructor = ReflectUtil.getConstructor("com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion",
+//																						   String.class, blockVector, blockVector);
+	}
+
 	private void disableProtection(@NonNull final Sellblock sellblock) {
 		final RegionContainer container = WorldGuardPlugin.inst().getRegionContainer();
 		final RegionManager   regions   = container.get(sellblock.getLocation().toLocation().getWorld());
