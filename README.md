@@ -20,17 +20,17 @@ You will be prompted to break a block.
 
 Next, drop the item that you wish to collect. After doing so, you will have successfully registered a sellblock!
 
-[Creating a sellblock](https://i.imgur.com/eGxrfhy.gif)
+![creating a sellblock](https://i.imgur.com/eGxrfhy.gif)
 
 To remove a sellblock, follow the same procedure, but instead run /sellblock remove.
 
 SellBlocks will automatically hook into WorldGuard to protect your sellblocks.
 
-[Protection](https://imgur.com/rX1NBKF.gif)
+![protection](https://i.imgur.com/rX1NBKF.gif)
 
 Now, when an item of the type you set is dropped within the pickup distance (configurable), it will be automatically sold and credited to your account.
 
-[a sellblock in action](https://imgur.com/pNxU33Z.gif) 
+![a sellblock in action](https://i.imgur.com/pNxU33Z.gif) 
 
 ## Other info
 
