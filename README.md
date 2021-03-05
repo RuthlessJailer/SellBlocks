@@ -1,4 +1,4 @@
-SellBlocks lets you configure an area where items that are dropped (such as a farm), are automatically sold and the money credited to your account. No chests or storage systems needed!
+[SellBlocks](https://www.spigotmc.org/resources/sellblocks.86123/) lets you configure an area where items that are dropped (such as a farm), are automatically sold and the money credited to your account. No chests or storage systems needed!
 
 ## Setting up
 
@@ -114,3 +114,5 @@ Every aspect of this plugin is configurable.
 
 ## Support
 If you need help, hop on my [Discord server](https://discord.gg/vvKuHBVGMK) and I'll be glad to help you!
+
+Check out the [SpigotMC page](https://www.spigotmc.org/resources/sellblocks.86123/) to download the latest version.
